@@ -14,7 +14,10 @@ export default function Home() {
       <section className="hero">
         <div className="hero__content">
           <p className="eyebrow">Технический продакшн полного цикла</p>
-          <h1>{site.name}</h1>
+          <h1>
+            {site.name}
+            <span>делает событие реальным</span>
+          </h1>
           <p className="hero__lead">{site.description}</p>
           <div className="hero__actions">
             <ButtonLink href="/contacts" icon={<ArrowRight aria-hidden="true" size={18} />}>
@@ -29,8 +32,20 @@ export default function Home() {
               Написать в Telegram
             </ButtonLink>
           </div>
+          <div className="hero__note">
+            <span>Свет</span>
+            <span>Звук</span>
+            <span>Сцена</span>
+            <span>Команда</span>
+          </div>
         </div>
-        <StageVisual label="Световая сцена beat&beam" />
+        <div className="hero__visual">
+          <StageVisual label="Световая сцена beat&beam" />
+          <div className="hero__caption">
+            <strong>Техническая карта</strong>
+            <span>Сборка решения под площадку, тайминг и масштаб</span>
+          </div>
+        </div>
       </section>
 
       <section className="stats-row" aria-label="Ключевые показатели">
@@ -40,6 +55,29 @@ export default function Home() {
             <span>{item.label}</span>
           </div>
         ))}
+      </section>
+
+      <section className="showcase-strip" aria-label="Основные направления">
+        <Link href="/services">
+          <span>01</span>
+          <strong>Световое шоу</strong>
+          <small>Сцены, динамика, акценты</small>
+        </Link>
+        <Link href="/services">
+          <span>02</span>
+          <strong>Чистый звук</strong>
+          <small>Баланс, мощность, контроль</small>
+        </Link>
+        <Link href="/team">
+          <span>03</span>
+          <strong>Команда на площадке</strong>
+          <small>Техники, риггеры, координаторы</small>
+        </Link>
+        <Link href="/projects">
+          <span>04</span>
+          <strong>Крупные площадки</strong>
+          <small>Арены, театры, форумы</small>
+        </Link>
       </section>
 
       <section className="split-section">
