@@ -1,87 +1,82 @@
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 
-import { projects, services, stats } from "@/lib/content";
+import { EventHero } from "@/components/EventHero";
+import { cycleSteps, projects, services, stats } from "@/lib/content";
 
-const serviceTabs = ["Свет", "Звук", "Сцена", "Спецэффекты", "Команда", "Логистика", "Проекты"];
-
-const toolCards = [
+const formatCards = [
   {
-    title: "Световая схема",
-    text: "Сцены, приборы, акценты и управление светом под драматургию события.",
+    title: "Свадьбы",
+    tag: "Private events",
+    text: "Свет для церемонии, чистая речь, музыкальная зона, сцена и деликатные спецэффекты.",
+    image: "/videos/event-wedding-poster.jpg"
+  },
+  {
+    title: "Корпоративы",
+    tag: "Brand events",
+    text: "Премии, презентации, вечерние программы, брендированный свет и техническая режиссура.",
+    image: "/videos/event-lasers-poster.jpg"
+  },
+  {
+    title: "Выступления",
+    tag: "Live shows",
+    text: "Концерты, артистические райдеры, мониторинг, световые сцены и быстрые смены.",
+    image: "/videos/event-concert-poster.jpg"
+  },
+  {
+    title: "Конференции",
+    tag: "Business",
+    text: "Звук для спикеров, экраны, трансляции, тайминг, коммутация и дежурная команда.",
+    image: "/videos/event-stage-poster.jpg"
+  },
+  {
+    title: "Фестивали",
+    tag: "Outdoor",
+    text: "Несколько зон, сцены, логистика оборудования, смены команд и работа на потоке.",
+    image: "/videos/event-concert-poster.jpg"
+  }
+];
+
+const productionCards = [
+  {
+    title: "Свет",
+    text: "Световая схема, приборы, пульты, сцены, акценты и программирование под драматургию.",
     imageClass: "replica-tool-card--editing"
   },
   {
-    title: "Production intelligence",
-    text: "Техническая карта, риски, тайминг, коммутация и состав команды в одном плане.",
+    title: "Звук",
+    text: "FOH, мониторы, микрофоны, акустика площадки, речь, live-сеты и конференц-формат.",
     imageClass: "replica-tool-card--design"
   },
   {
-    title: "Команда на площадке",
-    text: "Саунд, лайт, техники, риггеры и координатор проекта работают как единая группа.",
+    title: "Сцена и подвесы",
+    text: "Фермы, подиумы, безопасный монтаж, риггинг, коммутация и стабильная конструкция.",
     imageClass: "replica-tool-card--team"
   },
   {
-    title: "Площадки и логистика",
-    text: "Доставка, монтаж, подвесы, настройка, поддержка и демонтаж после мероприятия.",
+    title: "Команда",
+    text: "Саунд, лайт, техники, риггеры, операторы эффектов и координатор на площадке.",
     imageClass: "replica-tool-card--domains"
   }
 ];
 
 const faqRows = [
-  "Как собрать техническую карту",
-  "Какие задачи можно закрыть отдельно",
-  "Как проходит монтаж и сопровождение",
-  "Как быстро оценить бюджет"
+  "Какие вводные нужны для расчета",
+  "Как выбрать оборудование под площадку",
+  "Что входит в смену технической команды",
+  "Как подготовить площадку к монтажу"
 ];
 
 export default function Home() {
   return (
     <div className="replica-page">
-      <section className="replica-hero">
-        <video
-          aria-hidden="true"
-          autoPlay
-          className="replica-hero__video"
-          loop
-          muted
-          playsInline
-          poster="/videos/hero-sctena-poster.jpg"
-        >
-          <source src="/videos/hero-sctena.mp4" type="video/mp4" />
-        </video>
-        <div className="replica-hero__shade" />
-        <div className="replica-hero__content">
-          <h1>Технический продакшн делает это возможным</h1>
-          <Link className="replica-button replica-button--light" href="/contacts">
-            Начало работы
-          </Link>
-          <p>Начните с брифа. Мы соберем свет, звук, сцену, команду и техническую карту.</p>
-        </div>
-
-        <div className="replica-hero__previews" aria-label="Превью проектов">
-          <Link className="replica-preview replica-preview--left" href="/projects">
-            <span>ЦСКА Арена</span>
-            <strong>ARENA SHOW</strong>
-          </Link>
-          <Link className="replica-preview replica-preview--center" href="/services">
-            <span>beat&beam</span>
-            <strong>LIGHT / SOUND / STAGE</strong>
-          </Link>
-          <Link className="replica-preview replica-preview--right" href="/team">
-            <span>Команда</span>
-            <strong>CREW BOARD</strong>
-          </Link>
-        </div>
-      </section>
+      <EventHero />
 
       <section className="replica-showcase">
-        <div className="replica-showcase__cards" aria-hidden="true">
-          <div className="replica-site-card replica-site-card--side replica-site-card--one" />
-          <div className="replica-site-card replica-site-card--main" />
-          <div className="replica-site-card replica-site-card--side replica-site-card--two" />
-        </div>
-        <p>Присоединяйтесь к проектам, где техническая часть должна работать без права на сбой.</p>
+        <p>
+          Мы закрываем техническую часть события так, чтобы клиент видел результат, а не хаос из подрядчиков,
+          кабелей и срочных решений на площадке.
+        </p>
         <div className="replica-stats">
           {stats.map((item) => (
             <div key={item.label}>
@@ -92,48 +87,42 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="replica-white replica-grow">
-        <div className="replica-section-title replica-section-title--center">
-          <h2>Развивайте событие как полноценный продакшн</h2>
-          <p>Вам нужен технический контур, который может все.</p>
+      <section className="replica-white replica-formats">
+        <div className="replica-tools__head">
+          <h2>Под каждый формат собираем свою техническую схему</h2>
+          <p>
+            Одинаковый набор оборудования не работает для свадьбы, арены и деловой конференции. Мы начинаем с
+            сценария, площадки, аудитории и ограничений.
+          </p>
         </div>
 
-        <div className="replica-tabs" aria-label="Направления">
-          {serviceTabs.map((tab, index) => (
-            <Link className={index === 3 ? "replica-tabs__item replica-tabs__item--active" : "replica-tabs__item"} href="/services" key={tab}>
-              {tab}
+        <div className="replica-format-track" aria-label="Форматы мероприятий">
+          {formatCards.map((card) => (
+            <Link
+              className="replica-format-card"
+              href="/services"
+              key={card.title}
+              style={{ backgroundImage: `linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.78)), url(${card.image})` }}
+            >
+              <span>{card.tag}</span>
+              <strong>{card.title}</strong>
+              <p>{card.text}</p>
             </Link>
           ))}
-        </div>
-
-        <div className="replica-feature-slider">
-          <Link className="replica-feature-side replica-feature-side--left" href="/services">
-            <span>Световые сцены</span>
-          </Link>
-          <Link className="replica-feature-main" href="/services">
-            <div>
-              <h3>Спроектируйте шоу под площадку</h3>
-              <p>Свет, звук, сцена и спецэффекты собираются в единую карту мероприятия.</p>
-            </div>
-            <span className="replica-floating-note">layout / cues / crew</span>
-          </Link>
-          <Link className="replica-feature-side replica-feature-side--right" href="/projects">
-            <span>Кейсы площадок</span>
-          </Link>
         </div>
       </section>
 
       <section className="replica-white replica-tools">
         <div className="replica-tools__head">
-          <h2>Все, что вам нужно, на одной платформе</h2>
+          <h2>Все технические слои в одной команде</h2>
           <p>
-            Используйте оборудование, специалистов и технические рекомендации, необходимые для управления
-            мероприятием, в одном месте.
+            Свет, звук, сцена, спецэффекты, монтаж, логистика и дежурство на площадке не живут отдельно. Мы
+            собираем их в одну рабочую систему под конкретное событие.
           </p>
         </div>
 
         <div className="replica-tool-grid">
-          {toolCards.map((card) => (
+          {productionCards.map((card) => (
             <Link className={`replica-tool-card ${card.imageClass}`} href="/services" key={card.title}>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
@@ -143,35 +132,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="replica-ai">
+      <section className="replica-production-map">
         <div className="replica-section-title replica-section-title--center">
-          <div className="replica-dots" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
-          <h2>Начать работу с технической командой еще никогда не было так просто</h2>
-          <p>Опыт не требуется. Нужны только вводные по площадке и формату.</p>
+          <h2>Работаем полным циклом</h2>
+          <p>От первых вводных до демонтажа после мероприятия.</p>
         </div>
-        <div className="replica-ai__cards">
-          <Link className="replica-ai-card" href="/contacts">
-            <strong>Технический бриф</strong>
-            <p>Ответьте на несколько вопросов, и мы соберем стартовую рамку проекта.</p>
-          </Link>
-          <Link className="replica-ai-card replica-ai-card--templates" href="/projects">
-            <strong>Профессиональные схемы</strong>
-            <p>Адаптируем решения под арену, театр, форум, фестиваль или частное событие.</p>
-          </Link>
+        <div className="replica-map-grid">
+          {cycleSteps.map((step, index) => (
+            <div key={step}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step}</strong>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="replica-white replica-services">
         <div className="replica-services__head">
-          <h2>Сервис полного цикла</h2>
-          <p>Отдельные направления можно включать по мере необходимости.</p>
+          <h2>Можно взять весь продакшн или отдельное направление</h2>
+          <p>Если у вас уже есть часть команды или оборудования, подключимся точечно и без лишнего шума.</p>
         </div>
         <div className="replica-service-rows">
-          {services.slice(0, 5).map((service) => (
+          {services.map((service) => (
             <Link href="/services" key={service.title}>
               <span>{service.title}</span>
               <p>{service.text}</p>
@@ -193,8 +175,8 @@ export default function Home() {
       <section className="replica-final">
         <div className="replica-final__sphere" />
         <div className="replica-final__content">
-          <h2>Начните подготовку мероприятия на нашем сайте сегодня</h2>
-          <p>Опишите задачу. Мы вернемся с вопросами по площадке, оборудованию, срокам и бюджету.</p>
+          <h2>Начните с брифа, а не со списка оборудования</h2>
+          <p>Расскажите, что должно произойти на площадке. Мы переведем это в техническую карту и бюджет.</p>
           <Link className="replica-button replica-button--light" href="/contacts">
             Начать
           </Link>
@@ -203,8 +185,8 @@ export default function Home() {
 
       <section className="replica-projects">
         <div>
-          <h2>Часть наших проектов</h2>
-          <p>Площадки, где техническая часть должна быть незаметной для зрителя и точной для команды.</p>
+          <h2>Площадки и проекты</h2>
+          <p>Работаем с аренами, театральными сценами, деловыми площадками и городскими пространствами.</p>
         </div>
         <div className="replica-projects__grid">
           {projects.map((project) => (
