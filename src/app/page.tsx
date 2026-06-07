@@ -39,7 +39,17 @@ export default function Home() {
   return (
     <div className="replica-page">
       <section className="replica-hero">
-        <div className="replica-hero__bg" />
+        <video
+          aria-hidden="true"
+          autoPlay
+          className="replica-hero__video"
+          loop
+          muted
+          playsInline
+          poster="/videos/hero-sctena-poster.jpg"
+        >
+          <source src="/videos/hero-sctena.mp4" type="video/mp4" />
+        </video>
         <div className="replica-hero__shade" />
         <div className="replica-hero__content">
           <h1>Технический продакшн делает это возможным</h1>
